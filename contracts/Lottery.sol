@@ -32,7 +32,7 @@ contract Lottery {
             value > .001 ether,
             "O valor precisa ser superior a 0.001 ether"
         );
-        amount += value;
+        //amount += value;
         players.push(payable(msg.sender));
     }
 
@@ -52,7 +52,7 @@ contract Lottery {
     }
 
     function getPrize() public payable apenasWinner {
-        currentWinner.transfer(amount);
+        currentWinner.transfer(address(this).balance);
     }
 
     function getPlayers() public view returns (address payable[] memory) {
@@ -64,7 +64,7 @@ contract Lottery {
     }
 
     function getAmount() public view returns (uint256) {
-        return amount;
+        return address(this).balance;
     }
 
     // Invalida o contrato e envia saldo para o dono do contrato
