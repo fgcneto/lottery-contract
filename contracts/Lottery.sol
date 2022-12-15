@@ -69,10 +69,6 @@ contract Lottery {
 
     // Invalida o contrato e envia saldo para o dono do contrato
     function kill() public apenasDono {
-        require(
-            msg.sender == manager,
-            "Somente o dono do contrato pode usar o kill!"
-        );
         selfdestruct(manager);
     }
 }
